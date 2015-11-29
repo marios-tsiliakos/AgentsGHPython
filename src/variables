@@ -1,0 +1,31 @@
+import Rhino
+from math import*
+import _random as rnd
+
+# get a random number within a domain
+def random_limits(lower,upper,r):
+    randomlim = (upper -lower)*r + lower
+    return randomlim
+# get the agents initial positions
+def initial_pos():
+    l = 0.0
+    u= 100.0
+    j1 = (rnd.Random())
+    x = random_limits(l,u,j1.random())
+    y = random_limits(l,u,j1.random())
+    z = random_limits(l,u,j1.random())
+    pt = Rhino.Geometry.Point3d(x,y,z)
+    return pt
+#get the agents initial velocity
+def random_vel():
+    j = (rnd.Random())
+    x = random_limits(0,100,j.random())
+    y = random_limits(-1,100,j.random())
+    z = random_limits(-1,100,j.random())
+    vec_ran = Rhino.Geometry.Vector3d(x,y,z)
+    return vec_ran
+# limit vector
+def lim_vec(v):
+    if  v.Length >1:
+        v.Unitize()
+    return v
